@@ -1,0 +1,10 @@
+p {
+  font-size: 0.9em;
+  color: #ee6205;
+}
+
+span {
+  font-size: 1.1em;
+  font-weight: bold;
+  padding: 0.5em 0.5em;
+}
