@@ -27,7 +27,6 @@ export class HomePage {
   constructor(private bloodPressureService: BloodPressureService) {}
 
   onSubmit() {
-    console.log('submit');
     this.bpCategory = this.bloodPressureService.getBloodPressureCategory(
       this.bpFormMetric.value
     );

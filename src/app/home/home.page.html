@@ -4,7 +4,7 @@
       Blood Pressure Monitor
 
     </ion-title>
-    <ion-label slot="secondary" [routerLink]="['/privacy']">Privacy</ion-label>
+    <ion-button id="privacy-button" slot="secondary" [routerLink]="['/privacy']">Privacy</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -30,7 +30,7 @@
     <ion-button color="success" type="submit" [disabled]="!bpFormMetric.valid">Calculate</ion-button>
     </form>
     <div>
-      <span>Your Blood Pressure Value is:<strong>{{bpValue}}mmHg</strong></span>
+      <span>Your Blood Pressure Value is: <strong>{{bpValue}}mmHg</strong></span>
       </div>
     <div>
       <span>Your Blood Pressure Category is: <strong>{{bpCategory}}</strong></span>
