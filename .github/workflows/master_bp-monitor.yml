@@ -29,24 +29,13 @@ jobs:
         with:
           node-version: "14.x"
 
+      - name: Lint
+        run: npm run lint
+
       - name: npm install, build, and test
         run: |
           npm install
           npm run build
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: "Production"
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-      - name: "Deploy to Azure Web App"
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: "BP-Monitor"
-
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0A7E3A1B38F449BFB54B96C01BD02A12 }}
-          package: .
+      - name: Test
+        run: npm test -- --configuration=ci
