@@ -69,4 +69,4 @@ jobs:
           app-name: "BP-Monitor"
           slot-name: "Production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0A7E3A1B38F449BFB54B96C01BD02A12 }}
-          package: .
+          package: www
