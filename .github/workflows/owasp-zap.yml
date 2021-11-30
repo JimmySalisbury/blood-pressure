@@ -12,5 +12,4 @@ jobs:
       - name: OWASP ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.3.0
         with:
-          start: npm start
           target: "http://localhost:4200"
