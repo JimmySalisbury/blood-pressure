@@ -13,4 +13,4 @@ jobs:
         uses: zaproxy/action-baseline@v0.6.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          target: "http://localhost:4200"
+          target: "https://brave-grass-075de8c03.azurestaticapps.net/#/home"

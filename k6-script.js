@@ -22,18 +22,24 @@ export const options = {
 export default function main() {
   let response;
 
-  group("page_1 - http://localhost:4200/#/home", function () {
-    response = http.get("http://localhost:4200/", {
-      headers: {
-        dnt: "1",
-        "upgrade-insecure-requests": "1",
-        "sec-ch-ua":
-          '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
-        "sec-ch-ua-mobile": "?0",
-        "sec-ch-ua-platform": '"Windows"',
-      },
-    });
-  });
+  group(
+    "page_1 - https://brave-grass-075de8c03.azurestaticapps.net/",
+    function () {
+      response = http.get(
+        "https://brave-grass-075de8c03.azurestaticapps.net/",
+        {
+          headers: {
+            dnt: "1",
+            "upgrade-insecure-requests": "1",
+            "sec-ch-ua":
+              '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": '"Windows"',
+          },
+        }
+      );
+    }
+  );
 
   // Automatically added sleep
   sleep(1);
