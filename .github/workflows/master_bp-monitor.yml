@@ -60,7 +60,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           start: npm start
           wait-on: http://localhost:4200
 
