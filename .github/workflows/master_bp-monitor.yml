@@ -52,8 +52,6 @@ jobs:
         with:
           project: "blood-pressure"
           format: "HTML"
-          name: dependencies
-          path: dependencies.html
 
       - name: Upload Test results
         uses: actions/upload-artifact@master

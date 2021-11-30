@@ -22,8 +22,8 @@ export const options = {
 export default function main() {
   let response;
 
-  group("page_1 - http://localhost:8100/#/home", function () {
-    response = http.get("http://localhost:8100/", {
+  group("page_1 - http://localhost:4200/#/home", function () {
+    response = http.get("http://localhost:4200/", {
       headers: {
         dnt: "1",
         "upgrade-insecure-requests": "1",
