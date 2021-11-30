@@ -1,0 +1,17 @@
+name: K6 Performance test
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run k6 cloud test
+        uses: k6io/action@v0.2.0
+        with:
+          cloud: true
+          token: ${{ secrets.K6_CLOUD_API_TOKEN }}
+          filename: k6-script.js

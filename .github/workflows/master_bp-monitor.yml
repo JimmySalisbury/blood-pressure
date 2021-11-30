@@ -62,10 +62,3 @@ jobs:
         with:
           start: npm start
           wait-on: http://localhost:4200
-
-      - name: Run k6 cloud test
-        uses: k6io/action@v0.2.0
-        with:
-          cloud: true
-          token: ${{ secrets.K6_CLOUD_API_TOKEN }}
-          filename: k6-script.js
