@@ -42,14 +42,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          name: Sonar Code Scan report
+          path: sonar.html
 
       - name: Depcheck
         uses: dependency-check/Dependency-Check_Action@main
         id: Depcheck
         with:
           project: "blood-pressure"
-          path: "."
           format: "HTML"
+          name: dependencies
+          path: dependencies.html
 
       - name: Upload Test results
         uses: actions/upload-artifact@master
@@ -62,10 +66,13 @@ jobs:
         with:
           start: npm start
           wait-on: http://localhost:4200
+          name: cypress
+          path: E2E.html
 
-      - name: ZAP Scan
-        uses: zaproxy/action-full-scan@v0.3.0
+      - name: Run k6 cloud test
+        uses: k6io/action@v0.2.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          target: "http://localhost:4200"
-          cmd_options: "-a"
+          cloud: true
+          token: ${{ secrets.K6_CLOUD_API_TOKEN }}
+          name: k6report
+          path: k6report.txt
