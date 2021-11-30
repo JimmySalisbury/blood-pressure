@@ -1,0 +1,17 @@
+name: site-security-scan
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: OWASP ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.3.0
+        with:
+          start: npm start
+          wait-on: http://localhost:4200
+          target: "http://localhost:4200"

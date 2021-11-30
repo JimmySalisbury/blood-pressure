@@ -5,7 +5,7 @@ export const options = {
   ext: {
     loadimpact: {
       distribution: {
-        "amazon::ie:dublin": { loadZone: "amazon::ie:dublin", percent: 100 },
+        "amazon:ie:dublin": { loadZone: "amazon:ie:dublin", percent: 100 },
       },
     },
   },
