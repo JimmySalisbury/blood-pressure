@@ -42,9 +42,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          name: Sonar Code Scan report
-          path: sonar.html
 
       - name: Depcheck
         uses: dependency-check/Dependency-Check_Action@main
@@ -65,13 +62,10 @@ jobs:
         with:
           start: npm start
           wait-on: http://localhost:4200
-          name: cypress
-          path: E2E.txt
 
       - name: Run k6 cloud test
         uses: k6io/action@v0.2.0
         with:
           cloud: true
           token: ${{ secrets.K6_CLOUD_API_TOKEN }}
-          name: k6report
-          path: k6report.txt
+          filename: k6-script.js
