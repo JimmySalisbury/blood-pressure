@@ -51,6 +51,7 @@ jobs:
         id: Depcheck
         with:
           project: "blood-pressure"
+          path: "."
           format: "HTML"
 
       - name: Upload Test results
@@ -65,7 +66,7 @@ jobs:
           start: npm start
           wait-on: http://localhost:4200
           name: cypress
-          path: E2E.html
+          path: E2E.txt
 
       - name: Run k6 cloud test
         uses: k6io/action@v0.2.0
