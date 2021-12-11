@@ -1,42 +1,96 @@
 <ion-header [translucent]="true">
-  <ion-toolbar  color="primary">
-    <ion-title>
-      Blood Pressure Monitor
-
-    </ion-title>
-    <ion-button id="privacy-button" slot="secondary" [routerLink]="['/privacy']">Privacy</ion-button>
+  <ion-toolbar color="primary">
+    <ion-title> Blood Pressure Monitor </ion-title>
+    <ion-button id="privacy-button" slot="secondary" [routerLink]="['/privacy']"
+      >Privacy</ion-button
+    >
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card>
-    <form [formGroup]="bpFormMetric" (ngSubmit)="onSubmit()">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <form [formGroup]="bpFormMetric" (ngSubmit)="onSubmit()">
+            <ion-item>
+              <ion-label position="floating">Systolic Pressure</ion-label>
+              <ion-input
+                type="number"
+                formControlName="systolicPressure"
+                debounce="500"
+              ></ion-input>
+            </ion-item>
+            <ion-item
+              *ngIf="!bpFormMetric.controls.systolicPressure.valid  && (bpFormMetric.controls.systolicPressure.dirty)"
+            >
+              <p>
+                "Invalid Systolic Value - Systolic Pressure must be between 70
+                and 190.
+              </p>
+            </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Systolic Pressure</ion-label>
-        <ion-input type="number" formControlName="systolicPressure" debounce="500"></ion-input>
-      </ion-item>
-      <ion-item *ngIf="!bpFormMetric.controls.systolicPressure.valid  && (bpFormMetric.controls.systolicPressure.dirty)">
-              <p>"Invalid Systolic Value - Systolic Pressure must be between 70 and 190.</p>
-      </ion-item>
+            <ion-item>
+              <ion-label position="floating">Diastolic Pressure</ion-label>
+              <ion-input
+                type="number"
+                formControlName="diastolicPressure"
+                debounce="500"
+              ></ion-input>
+            </ion-item>
+            <ion-item
+              *ngIf="!bpFormMetric.controls.diastolicPressure.valid  && (bpFormMetric.controls.diastolicPressure.dirty)"
+            >
+              <p>
+                Invalid Diastolic Value - Diastolic Pressure must be between 40
+                and 100
+              </p>
+            </ion-item>
+            <ion-item
+              *ngIf="bpFormMetric.controls.diastolicPressure.value  > bpFormMetric.controls.systolicPressure.value"
+            >
+              <p>Systolic must be greater than Diastolic</p>
+            </ion-item>
+            <ion-button
+              color="success"
+              type="submit"
+              [disabled]="!bpFormMetric.valid"
+              >Calculate</ion-button
+            >
+          </form>
+          <div>
+            <span
+              >Your Blood Pressure Value is:
+              <strong>{{bpValue}}mmHg</strong></span
+            >
+          </div>
+          <div>
+            <span
+              >Your Blood Pressure Category is:
+              <strong>{{bpCategory}}</strong></span
+            >
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <div style="display: block">
+          <canvas
+            baseChart
+            width="400"
+            height="400"
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColors"
+            [legend]="lineChartLegend"
+            [type]="lineChartType"
+            [plugins]="lineChartPlugins"
+          >
+          </canvas>
+        </div>
 
-      <ion-item>
-        <ion-label position="floating">Diastolic Pressure</ion-label>
-        <ion-input type="number" formControlName="diastolicPressure" debounce="500"></ion-input>
-      </ion-item>
-      <ion-item *ngIf="!bpFormMetric.controls.diastolicPressure.valid  && (bpFormMetric.controls.diastolicPressure.dirty)">
-        <p>Invalid Diastolic Value - Diastolic Pressure must be between 40 and 100</p>
-    </ion-item>
-    <ion-item *ngIf="bpFormMetric.controls.diastolicPressure.value  > bpFormMetric.controls.systolicPressure.value">
-      <p>Systolic must be greater than Diastolic</p>
-  </ion-item>
-    <ion-button color="success" type="submit" [disabled]="!bpFormMetric.valid">Calculate</ion-button>
-    </form>
-    <div>
-      <span>Your Blood Pressure Value is: <strong>{{bpValue}}mmHg</strong></span>
-      </div>
-    <div>
-      <span>Your Blood Pressure Category is: <strong>{{bpCategory}}</strong></span>
-      </div>
-  </ion-card>
+        hello</ion-col
+      >
+    </ion-row>
+  </ion-grid>
 </ion-content>
