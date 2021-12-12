@@ -40,4 +40,4 @@ jobs:
         with:
           start: npm start
           wait-on: http://localhost:4200
-          spec: ./cypress/integration/spec.ts
+          spec: ../cypress/integration/spec.ts
