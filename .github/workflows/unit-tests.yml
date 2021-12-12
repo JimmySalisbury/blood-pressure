@@ -35,9 +35,9 @@ jobs:
           npm install
           npm run build
 
-      - name: Cypress E2e
+      - name: Cypress BDD and E2E
         uses: cypress-io/github-action@v2
         with:
           start: npm start
           wait-on: http://localhost:4200
-          spec: cypress/integration/tests/*
+          spec: cypress/integration/spect.ts
