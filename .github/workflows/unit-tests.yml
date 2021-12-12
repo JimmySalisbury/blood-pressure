@@ -5,9 +5,9 @@ name: Unit tests - BP-Monitor
 
 on:
   push:
-    branches: [master, Feature-1, staging]
+    branches: [master, Feature-1, Staging]
   pull_request:
-    branches: [master, Feature-1, staging]
+    branches: [master, Feature-1, Staging]
   workflow_dispatch:
 
 jobs:
