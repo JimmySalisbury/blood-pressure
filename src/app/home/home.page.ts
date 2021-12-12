@@ -34,11 +34,6 @@ export class HomePage implements OnInit {
   // New feature code
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-  // lineChartData = [
-  //   { data: [85, 72, 78, 75, 77, 75], label: 'Systolic' },
-  //   { data: [0, 10, 20, 10, 10, 10], label: 'Diastolic' },
-  // ];
-
   lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
@@ -59,8 +54,6 @@ export class HomePage implements OnInit {
     ],
     labels: [],
   };
-
-  //lineChartLabels = ['hello'];
 
   lineChartOptions: ChartConfiguration['options'] = {
     responsive: true,
