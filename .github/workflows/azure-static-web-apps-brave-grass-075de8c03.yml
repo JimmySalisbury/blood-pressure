@@ -56,11 +56,19 @@ jobs:
           name: Depcheck report
           path: ${{github.workspace}}/reports
 
-      - name: Cypress run
+      - name: Cypress BDD
         uses: cypress-io/github-action@v2
         with:
           start: npm start
           wait-on: http://localhost:4200
+          spec: cypress/integration/All.features
+
+      - name: Cypress and Cumcumber E2E
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm start
+          wait-on: http://localhost:4200
+          spec: cypress/integration/All.features
 
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
