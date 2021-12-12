@@ -31,7 +31,7 @@ export class HomePage implements OnInit {
   bpValue: number;
   bdData = [];
 
-  // New feature code
+  // New feature code 1: code
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
   lineChartData: ChartConfiguration['data'] = {
@@ -96,6 +96,7 @@ export class HomePage implements OnInit {
     this.saveToLocalStorage();
   }
 
+  //  New feature code 1: functions
   saveToLocalStorage() {
     this.bdData = JSON.parse(localStorage.getItem('bp_data') || '[]');
     this.bdData = [
@@ -122,4 +123,5 @@ export class HomePage implements OnInit {
     this.lineChartData.labels.length = 0;
     this.chart?.update();
   }
+  // end New feature functions
 }
