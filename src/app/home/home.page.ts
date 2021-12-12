@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BloodPressureService } from '../services/blood-pressure.service';
 
 import { ChartDataset, ChartOptions } from 'chart.js';
 import { baseColors } from 'ng2-charts';
 
+import { ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.css'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
   bpFormMetric = new FormGroup({
     systolicPressure: new FormControl('', [
       Validators.required,
@@ -26,14 +29,40 @@ export class HomePage {
 
   bpCategory: string;
   bpValue: number;
+  bdData = [];
 
-  lineChartData = [
-    { data: [85, 72, 78, 75, 77, 75], label: 'Crude oil prices' },
-  ];
+  // New feature code
+  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-  lineChartLabels = ['January', 'February', 'March', 'April', 'May', 'June'];
+  // lineChartData = [
+  //   { data: [85, 72, 78, 75, 77, 75], label: 'Systolic' },
+  //   { data: [0, 10, 20, 10, 10, 10], label: 'Diastolic' },
+  // ];
 
-  lineChartOptions = {
+  lineChartData: ChartConfiguration['data'] = {
+    datasets: [
+      {
+        data: [],
+        label: 'Systolic',
+        backgroundColor: 'rgba(148,159,177,0.2)',
+        borderColor: 'rgba(148,159,177,1)',
+        fill: 'origin',
+      },
+      {
+        data: [],
+        label: 'Diastolic',
+        backgroundColor: 'rgba(77,83,96,0.2)',
+        borderColor: 'red',
+
+        fill: 'origin',
+      },
+    ],
+    labels: [],
+  };
+
+  //lineChartLabels = ['hello'];
+
+  lineChartOptions: ChartConfiguration['options'] = {
     responsive: true,
   };
 
@@ -45,10 +74,24 @@ export class HomePage {
   ];
 
   lineChartLegend = true;
-  lineChartPlugins = [];
-  lineChartType = 'line';
+  lineChartType: ChartType = 'line';
+  // end new feature code for
 
   constructor(private bloodPressureService: BloodPressureService) {}
+
+  ngOnInit() {
+    this.bdData = JSON.parse(localStorage.getItem('bp_data') || '[]');
+    if (this.bdData.length !== 0) {
+      this.lineChartData.datasets[0].data.push(
+        ...this.bdData.map((data) => data.systolicPressure)
+      );
+      this.lineChartData.datasets[1].data.push(
+        ...this.bdData.map((data) => data.diastolicPressure)
+      );
+      this.lineChartData.labels?.push(...this.bdData.map((data) => data.date));
+      this.chart?.update();
+    }
+  }
 
   onSubmit() {
     this.bpCategory = this.bloodPressureService.getBloodPressureCategory(
@@ -57,5 +100,33 @@ export class HomePage {
     this.bpValue = this.bloodPressureService.calculateMainArterialPressure(
       this.bpFormMetric.value
     );
+    this.saveToLocalStorage();
+  }
+
+  saveToLocalStorage() {
+    this.bdData = JSON.parse(localStorage.getItem('bp_data') || '[]');
+    this.bdData = [
+      ...this.bdData,
+      { ...this.bpFormMetric.value, date: new Date().toLocaleString() },
+    ];
+    localStorage.setItem('bp_data', JSON.stringify(this.bdData));
+    console.log();
+    this.lineChartData.datasets[0].data.push(
+      this.bpFormMetric.value.systolicPressure
+    );
+    this.lineChartData.datasets[1].data.push(
+      this.bpFormMetric.value.diastolicPressure
+    );
+    this.lineChartData.labels?.push(new Date().toLocaleString());
+    this.chart?.update();
+  }
+
+  clearLocalStorage() {
+    localStorage.removeItem('bp_data');
+    this.bdData.length = 0;
+    this.lineChartData.datasets[0].data.length = 0;
+    this.lineChartData.datasets[0].data.length = 0;
+    this.lineChartData.labels.length = 0;
+    this.chart?.update();
   }
 }
