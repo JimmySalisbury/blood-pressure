@@ -34,4 +34,5 @@ export class HomePage {
       this.bpFormMetric.value
     );
   }
+  // new code here
 }
