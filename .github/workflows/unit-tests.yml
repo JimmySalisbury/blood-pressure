@@ -35,5 +35,9 @@ jobs:
           npm install
           npm run build
 
-      - name: Run Cypress E2E
-        run: npm run cypress:open
+      - name: Cypress E2e
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm start
+          wait-on: http://localhost:4200
+          spec: cypress/integration/spec.ts
