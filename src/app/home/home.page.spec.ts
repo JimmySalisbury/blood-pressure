@@ -7,6 +7,37 @@ import { RouterTestingModule } from '@angular/router/testing';
 describe('HomePage', () => {
   let component: HomePage;
   let fixture: ComponentFixture<HomePage>;
+  let lineChartOptions = {
+    responsive: true,
+  };
+
+  let lineChartColors = [
+    {
+      borderColor: 'black',
+      backgroundColor: 'rgba(255,255,0,0.28)',
+    },
+  ];
+
+  let lineChartData = {
+    datasets: [
+      {
+        data: [],
+        label: 'Systolic',
+        backgroundColor: 'rgba(148,159,177,0.2)',
+        borderColor: 'rgba(148,159,177,1)',
+        fill: 'origin',
+      },
+      {
+        data: [],
+        label: 'Diastolic',
+        backgroundColor: 'rgba(77,83,96,0.2)',
+        borderColor: 'red',
+
+        fill: 'origin',
+      },
+    ],
+    labels: [],
+  };
 
   beforeEach(
     waitForAsync(() => {
@@ -89,5 +120,12 @@ describe('HomePage', () => {
     expect(component.lineChartData.datasets[1].data.length).toEqual(0);
     expect(component.lineChartData.labels.length).toEqual(0);
     expect(component.bdData.length).toEqual(0);
+  });
+
+  it('should respond true if componant  variables created', () => {
+    component.clearLocalStorage();
+    expect(component.lineChartOptions).toEqual(lineChartOptions);
+    expect(component.lineChartColors).toEqual(lineChartColors);
+    expect(component.lineChartOptions).toEqual(lineChartOptions);
   });
 });
