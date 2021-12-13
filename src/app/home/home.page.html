@@ -10,7 +10,7 @@
 <ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row>
-      <ion-col>
+      <ion-col size="12" size-sm="6">
         <ion-card>
           <form [formGroup]="bpFormMetric" (ngSubmit)="onSubmit()">
             <ion-item>
@@ -57,6 +57,9 @@
               [disabled]="!bpFormMetric.valid"
               >Calculate</ion-button
             >
+            <ion-button color="danger" (click)="clearLocalStorage()"
+              >Clear BP Record</ion-button
+            >
           </form>
           <div>
             <span
@@ -72,7 +75,6 @@
           </div>
         </ion-card>
       </ion-col>
-
       <ion-col size="12" size-sm="6">
         <div>
           <span> Blood Pressure Record</span>
