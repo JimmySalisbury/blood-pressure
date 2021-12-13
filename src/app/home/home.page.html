@@ -8,59 +8,86 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card>
-    <form [formGroup]="bpFormMetric" (ngSubmit)="onSubmit()">
-      <ion-item>
-        <ion-label position="floating">Systolic Pressure</ion-label>
-        <ion-input
-          type="number"
-          formControlName="systolicPressure"
-          debounce="500"
-        ></ion-input>
-      </ion-item>
-      <ion-item
-        *ngIf="!bpFormMetric.controls.systolicPressure.valid  && (bpFormMetric.controls.systolicPressure.dirty)"
-      >
-        <p>
-          "Invalid Systolic Value - Systolic Pressure must be between 70 and
-          190.
-        </p>
-      </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="6">
+        <ion-card>
+          <form [formGroup]="bpFormMetric" (ngSubmit)="onSubmit()">
+            <ion-item>
+              <ion-label position="floating">Systolic Pressure</ion-label>
+              <ion-input
+                type="number"
+                formControlName="systolicPressure"
+                debounce="500"
+              ></ion-input>
+            </ion-item>
+            <ion-item
+              *ngIf="!bpFormMetric.controls.systolicPressure.valid  && (bpFormMetric.controls.systolicPressure.dirty)"
+            >
+              <p>
+                "Invalid Systolic Value - Systolic Pressure must be between 70
+                and 190.
+              </p>
+            </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Diastolic Pressure</ion-label>
-        <ion-input
-          type="number"
-          formControlName="diastolicPressure"
-          debounce="500"
-        ></ion-input>
-      </ion-item>
-      <ion-item
-        *ngIf="!bpFormMetric.controls.diastolicPressure.valid  && (bpFormMetric.controls.diastolicPressure.dirty)"
-      >
-        <p>
-          Invalid Diastolic Value - Diastolic Pressure must be between 40 and
-          100
-        </p>
-      </ion-item>
-      <ion-item
-        *ngIf="bpFormMetric.controls.diastolicPressure.value  > bpFormMetric.controls.systolicPressure.value"
-      >
-        <p>Systolic must be greater than Diastolic</p>
-      </ion-item>
-      <ion-button color="success" type="submit" [disabled]="!bpFormMetric.valid"
-        >Calculate</ion-button
-      >
-    </form>
-    <div>
-      <span
-        >Your Blood Pressure Value is: <strong>{{bpValue}}mmHg</strong></span
-      >
-    </div>
-    <div>
-      <span
-        >Your Blood Pressure Category is: <strong>{{bpCategory}}</strong></span
-      >
-    </div>
-  </ion-card>
+            <ion-item>
+              <ion-label position="floating">Diastolic Pressure</ion-label>
+              <ion-input
+                type="number"
+                formControlName="diastolicPressure"
+                debounce="500"
+              ></ion-input>
+            </ion-item>
+            <ion-item
+              *ngIf="!bpFormMetric.controls.diastolicPressure.valid  && (bpFormMetric.controls.diastolicPressure.dirty)"
+            >
+              <p>
+                Invalid Diastolic Value - Diastolic Pressure must be between 40
+                and 100
+              </p>
+            </ion-item>
+            <ion-item
+              *ngIf="bpFormMetric.controls.diastolicPressure.value  > bpFormMetric.controls.systolicPressure.value"
+            >
+              <p>Systolic must be greater than Diastolic</p>
+            </ion-item>
+            <ion-button
+              color="success"
+              type="submit"
+              [disabled]="!bpFormMetric.valid"
+              >Calculate</ion-button
+            >
+            <ion-button color="danger" (click)="clearLocalStorage()"
+              >Clear BP Record</ion-button
+            >
+          </form>
+          <div>
+            <span
+              >Your Blood Pressure Value is:
+              <strong>{{bpValue}}mmHg</strong></span
+            >
+          </div>
+          <div>
+            <span
+              >Your Blood Pressure Category is:
+              <strong>{{bpCategory}}</strong></span
+            >
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col size="12" size-sm="6">
+        <div>
+          <span> Blood Pressure Record</span>
+          <canvas
+            baseChart
+            [data]="lineChartData"
+            [options]="lineChartOptions"
+            type="line"
+          >
+          </canvas>
+        </div>
+        Staging Page
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
