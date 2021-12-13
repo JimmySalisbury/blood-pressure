@@ -6,7 +6,8 @@ name: Build and Test
 on:
   push:
     branches: [Master, Staging, Feature-1]
-
+  pull_request:
+    branches: [master, Feature-1, Staging]
   workflow_dispatch:
 
 jobs:
