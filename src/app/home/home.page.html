@@ -72,7 +72,20 @@
           </div>
         </ion-card>
       </ion-col>
-      <ion-col>Staging</ion-col>
+
+      <ion-col size="12" size-sm="6">
+        <div>
+          <span> Blood Pressure Record</span>
+          <canvas
+            baseChart
+            [data]="lineChartData"
+            [options]="lineChartOptions"
+            type="line"
+          >
+          </canvas>
+        </div>
+        Feature-1
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
