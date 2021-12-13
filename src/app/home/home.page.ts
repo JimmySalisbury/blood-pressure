@@ -70,6 +70,7 @@ export class HomePage implements OnInit {
   constructor(private bloodPressureService: BloodPressureService) {}
 
   ngOnInit() {
+    console.log(this.chart);
     this.bdData = JSON.parse(localStorage.getItem('bp_data') || '[]');
     if (this.bdData.length !== 0) {
       this.lineChartData.datasets[0].data.push(
@@ -110,6 +111,7 @@ export class HomePage implements OnInit {
     );
     this.lineChartData.labels?.push(new Date().toLocaleString());
     this.chart?.update();
+    console.log(this.chart);
   }
 
   clearLocalStorage() {
@@ -119,6 +121,7 @@ export class HomePage implements OnInit {
     this.lineChartData.datasets[1].data.length = 0;
     this.lineChartData.labels.length = 0;
     this.chart?.update();
+    console.log(this.chart);
   }
   // end New feature functions
 }

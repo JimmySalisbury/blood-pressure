@@ -50,6 +50,7 @@ describe('HomePage', () => {
   });
 
   it('returns a BP of Ideal on form submit', () => {
+    component.clearLocalStorage();
     expect(component.bpFormMetric.valid).toBeFalsy();
     component.bpFormMetric.controls.systolicPressure.setValue(120);
     component.bpFormMetric.controls.diastolicPressure.setValue(80);
@@ -57,6 +58,10 @@ describe('HomePage', () => {
     expect(component.bpFormMetric.valid).toBeTruthy();
     component.onSubmit();
     expect(component.bpCategory).toEqual('Ideal Blood Pressure');
+    expect(component.lineChartData.datasets[0].data.length).toBeGreaterThan(0);
+    expect(component.lineChartData.datasets[1].data.length).toBeGreaterThan(0);
+    expect(component.lineChartData.labels.length).toBeGreaterThan(0);
+    expect(component.bdData.length).toBeGreaterThan(0);
   });
 
   it('should save to locale storage', () => {
