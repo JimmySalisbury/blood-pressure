@@ -101,7 +101,7 @@ export class HomePage implements OnInit {
       { ...this.bpFormMetric.value, date: new Date().toLocaleString() },
     ];
     localStorage.setItem('bp_data', JSON.stringify(this.bdData));
-    console.log();
+
     this.lineChartData.datasets[0].data.push(
       this.bpFormMetric.value.systolicPressure
     );
@@ -110,17 +110,15 @@ export class HomePage implements OnInit {
     );
     this.lineChartData.labels?.push(new Date().toLocaleString());
     this.chart?.update();
-    return true;
   }
 
   clearLocalStorage() {
     localStorage.removeItem('bp_data');
     this.bdData.length = 0;
     this.lineChartData.datasets[0].data.length = 0;
-    this.lineChartData.datasets[0].data.length = 0;
+    this.lineChartData.datasets[1].data.length = 0;
     this.lineChartData.labels.length = 0;
     this.chart?.update();
-    return true;
   }
   // end New feature functions
 }
