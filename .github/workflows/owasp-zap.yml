@@ -1,7 +1,7 @@
 name: OWASP ZAP Pen Test
 on:
   push:
-    branches: [master]
+    branches: [master, Feature-1, Staging]
   pull_request:
     branches: [master]
 

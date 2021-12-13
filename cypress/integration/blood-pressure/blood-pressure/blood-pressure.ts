@@ -28,3 +28,26 @@ Then(`I see {string} on the page`, (value) => {
 And(`I see {string} on the page`, (value) => {
   cy.contains(value);
 });
+
+Given(`I visit blood pressure app`, () => {
+  cy.visit(url);
+});
+
+And(`I enter a systolic pressure of 120`, () => {
+  cy.get('[formControlName=systolicPressure]').then((elem) => {
+    elem.val(120);
+  });
+});
+
+And(`I enter a  diastolic pressure of 90`, () => {
+  cy.get('[formControlName=diastolicPressure]').then((elem) => {
+    elem.val(90);
+});
+
+Then(`I click calculate`, (value) => {
+  cy.get('[type=submit]').click();
+});
+
+Then(`I see {string} on the page`, (value) => {
+  cy.contains( value);
+});
