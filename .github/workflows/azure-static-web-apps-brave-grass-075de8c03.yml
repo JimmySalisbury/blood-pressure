@@ -68,7 +68,7 @@ jobs:
         with:
           start: npm start
           wait-on: http://localhost:4200
-          spec: cypress/integration/All.features
+          spec: cypress/integration/spec.ts
 
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
