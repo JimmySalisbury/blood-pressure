@@ -8,7 +8,7 @@
     "start": "ng serve",
     "build": "ng build --configuration production",
     "test": "ng test --code-coverage",
-    "test:ci": "ng test --watch=false --code-coverage",
+    "test:ci": "ng test --browsers=ChromeHeadless --watch=false --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
@@ -31,6 +31,8 @@
     "@capacitor/status-bar": "1.0.6",
     "@cucumber/cucumber": "^8.0.0-rc.1",
     "@ionic/angular": "^5.5.2",
+    "chart.js": "^3.6.2",
+    "ng2-charts": "^3.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

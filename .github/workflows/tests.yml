@@ -6,6 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - BP-Monitor
 on:
   push:
     branches: [Master, Staging, Feature-1]
+
   workflow_dispatch:
 
 jobs:
