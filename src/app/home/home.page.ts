@@ -120,5 +120,7 @@ export class HomePage implements OnInit {
     this.chart?.update();
     console.log(this.chart);
   }
+
   // end New feature functions
+
 }
