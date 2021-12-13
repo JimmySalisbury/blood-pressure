@@ -62,9 +62,6 @@ export class HomePage implements OnInit {
       backgroundColor: 'rgba(255,255,0,0.28)',
     },
   ];
-
-  lineChartLegend = true;
-  lineChartType: ChartType = 'line';
   // end new feature code for
 
   constructor(private bloodPressureService: BloodPressureService) {}

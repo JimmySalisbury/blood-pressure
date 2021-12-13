@@ -59,11 +59,11 @@ jobs:
       - name: Cypress BDD
         uses: cypress-io/github-action@v2
         with:
-          start: npm start
+          start: npm and Cumcumber start
           wait-on: http://localhost:4200
           spec: cypress/integration/All.features
 
-      - name: Cypress and Cumcumber E2E
+      - name: Cypress  E2E
         uses: cypress-io/github-action@v2
         with:
           start: npm start
