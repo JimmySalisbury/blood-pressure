@@ -2,10 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BloodPressureService } from '../services/blood-pressure.service';
 
-import { ChartDataset, ChartOptions } from 'chart.js';
-import { baseColors } from 'ng2-charts';
-
-import { ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
+import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
@@ -113,6 +110,7 @@ export class HomePage implements OnInit {
     );
     this.lineChartData.labels?.push(new Date().toLocaleString());
     this.chart?.update();
+    return true;
   }
 
   clearLocalStorage() {
@@ -122,6 +120,7 @@ export class HomePage implements OnInit {
     this.lineChartData.datasets[0].data.length = 0;
     this.lineChartData.labels.length = 0;
     this.chart?.update();
+    return true;
   }
   // end New feature functions
 }
