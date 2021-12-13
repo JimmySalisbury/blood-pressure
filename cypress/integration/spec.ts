@@ -25,10 +25,4 @@ describe('Blood Pressure App Testing', () => {
     cy.get('[id=privacy-back-button]').click();
     cy.contains('Blood Pressure Monitor');
   });
-
-  //new feature tests
-  it('shows the graph exists on page', () => {
-    cy.visit('/');
-    cy.get('canvas');
-  });
 });

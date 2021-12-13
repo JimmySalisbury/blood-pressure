@@ -1,7 +1,7 @@
 name: K6 Performance test
 on:
   push:
-    branches: [master, Feature-1, Staging]
+    branches: [master]
   pull_request:
     branches: [master]
 
